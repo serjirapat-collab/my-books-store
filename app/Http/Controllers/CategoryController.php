@@ -2,58 +2,56 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class CategoryController extends Controller
 {
 
-    const CATEGORIES=[
+    const CATEGORIES = [
 
-        'CT001'=>[
-            'code'=>'CT001',
-            'name'=>'PHP'
+        'CT001' => [
+            'code' => 'CT001',
+            'name' => 'PHP'
         ],
 
-        'CT002'=>[
-            'code'=>'CT002',
-            'name'=>'JavaScript'
+        'CT002' => [
+            'code' => 'CT002',
+            'name' => 'JavaScript'
         ],
 
-        'CT003'=>[
-            'code'=>'CT003',
-            'name'=>'Python'
+        'CT003' => [
+            'code' => 'CT003',
+            'name' => 'Python'
         ]
 
     ];
 
-    public function list():View
+    public function list(): View
     {
-        return view('categories.list',[
-            'categories'=>self::CATEGORIES
+        return view('categories.list', [
+            'categories' => self::CATEGORIES
         ]);
     }
 
-    public function view(string $category):View
+    public function view(string $category): View
     {
-        $products=[];
+        $products = [];
 
-        foreach(ProductController::PRODUCTS as $product){
+        foreach (ProductController::PRODUCTS as $product) {
 
-            if($product['catCode']===$category){
+            if ($product['catCode'] === $category) {
 
-                $products[]=$product;
-
+                $products[] = $product;
             }
-
         }
 
-        return view('categories.view',[
+        return view('categories.view', [
 
-            'category'=>self::CATEGORIES[$category],
+            'category' => self::CATEGORIES[$category],
 
-            'products'=>$products
+            'products' => $products
 
         ]);
     }
-
 }

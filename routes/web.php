@@ -23,3 +23,4 @@ Route::controller(CategoryController::class)
         Route::get('/', 'list')->name('list');
         Route::get('/{category}', 'view')->name('view');
     });
+

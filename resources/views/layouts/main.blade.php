@@ -4,88 +4,84 @@
 
 <head>
 
-<title>Jirapat's Books Store - @yield('title')</title>
+    <title>Jirapat's Books Store - {{ $title }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/lec04-style.css') }}" />
+    <style>
+        table {
 
-<style>
+            border-collapse: collapse;
 
-table{
+        }
 
-border-collapse:collapse;
+        table,
+        th,
+        td {
 
-}
+            border: 1px solid black;
 
-table,th,td{
+        }
 
-border:1px solid black;
+        .app-cmp-product-image {
 
-}
+            width: 64px;
 
-.app-cmp-product-image{
+        }
 
-width:64px;
+        dl {
 
-}
+            display: grid;
 
-dl{
+            grid-template-columns: auto 1fr;
 
-display:grid;
+        }
 
-grid-template-columns:auto 1fr;
+        dt {
 
-}
+            display: flex;
 
-dt{
+            font-weight: bold;
 
-display:flex;
+        }
 
-font-weight:bold;
+        dt::after {
 
-}
+            content: "::";
 
-dt::after{
+            margin-left: auto;
 
-content:"::";
+            padding-left: 10px;
 
-margin-left:auto;
+            padding-right: 10px;
 
-padding-left:10px;
-
-padding-right:10px;
-
-}
-
-</style>
+        }
+    </style>
 
 </head>
 
 <body>
+    <header id="app-main-header">
+        <h1>
+            Jirapat's Books Store –
+            <span @class($titleClasses ?? [])>{{ $title }}</span>
+        </h1>
+        <nav>
+            <ul class="app-cmp-links">
+                <li @class(['app-cl-active' => Route::is('products.*')])>
+                    <a href="{{ route('products.list') }}">Products</a>
+                </li>
+                <li @class(['app-cl-active' => Route::is('categories.*')])>
+                    <a href="{{ route('categories.list') }}">Categories</a>
+                </li>
+            </ul>
+        </nav>
+        <hr>
 
-<h1>
+        @yield('content')
 
-Jirapat's Books Store - @yield('title')
-
-</h1>
-
-<a href="{{route('products.list')}}">
-
-Products
-
-</a>
-
-<a href="{{route('categories.list')}}">
-
-Categories
-
-</a>
-
-<hr>
-
-@yield('content')
-
-<hr>
-
-© Copyright Week-03,2026 Jirapat's Books Store
+        <hr>
 
 </body>
+<footer id="app-main-footer"> &#xA9; Copyright Week-03,2026 Jirapat's Books Store
+</footer>
 
 </html>

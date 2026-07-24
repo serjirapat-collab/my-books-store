@@ -1,60 +1,61 @@
-@extends('layouts.main')
-
-@section('title',$product['name'])
-
+@extends('layouts.main', [
+'title' => 'Products',
+'titleClasses' => ['app-cl-product-code2'],
+])
 @section('content')
-<style>
-dl {
-display: grid;
-grid-template-columns: auto 1fr;
-}
-dt {
-display: flex;
-flex-direction: row;
-font-weight: bold;
-}
-dt::after {
-content: '::';
-padding-left: 1ch;
-padding-right: 1ch;
-margin-left: auto;
-}
-</style>
+    <style>
+        dl {
+            display: grid;
+            grid-template-columns: auto 1fr;
+        }
 
-<img
-src="{{asset('images/products/'.$product['code'].'.jpg')}}">
+        dt {
+            display: flex;
+            flex-direction: row;
+            font-weight: bold;
+        }
 
-<dl>
+        dt::after {
+            content: '::';
+            padding-left: 1ch;
+            padding-right: 1ch;
+            margin-left: auto;
+        }
+    </style>
 
-<dt>Code</dt>
+    <img src="{{ asset('images/products/' . $product['code'] . '.jpg') }}">
 
-<dd>
+    <dl>
 
-<em>{{$product['code']}}</em>
+        <dt>Code</dt>
 
-</dd>
+        <dd>
 
-<dt>Category</dt>
+            <em class="procode">{{ $product['code'] }}</em>
 
-<dd>
+        </dd>
 
-<a href="{{route('categories.view',['category'=>$product['catCode']])}}">
+        <dt>Category</dt>
 
-{{$category['name']}}
+        <dd>
 
-</a>
+            <a  class="catcode" href="{{ route('categories.view', ['category' => $product['catCode']]) }}">
 
-</dd>
+                {{ $category['name'] }}
 
-<dt>Name</dt>
+            </a>
 
-<dd>{{$product['name']}}</dd>
+        </dd>
 
-</dl>
+        <dt>Name</dt>
 
-<pre>
+        <dd>{{ $product['name'] }}</dd>
 
-{{$product['description']}}
+    </dl>
+
+    <pre>
+
+{{ $product['description'] }}
 
 </pre>
 

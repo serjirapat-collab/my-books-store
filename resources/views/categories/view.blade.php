@@ -1,59 +1,56 @@
-@extends('layouts.main')
-
-@section('title',$category['name'])
+@extends('layouts.main', [
+'title' => $category['name'],
+'titleClasses' => ['app-cl-product-code'],
+])
 
 @section('content')
 
-<h2>
+    <h2>
 
-Products List : {{$category['name']}}
+        Products List : <a class="catcode">{{ $category['name'] }} </a>
 
-</h2>
+    </h2>
 
-<table>
+    <table>
 
-<tr>
+        <tr>
 
-<th>No.</th>
+            <th>No.</th>
 
-<th>Image</th>
+            <th>Image</th>
 
-<th>Code</th>
+            <th>Code</th>
 
-<th>Name</th>
+            <th>Name</th>
 
-</tr>
+        </tr>
 
-@foreach($products as $product)
+        @foreach ($products as $product)
+            <tr>
 
-<tr>
+                <td>{{ $loop->iteration }}</td>
 
-<td>{{$loop->iteration}}</td>
+                <td>
 
-<td>
+                    <img src="{{ asset('images/products/' . $product['code'] . '.jpg') }}" class="app-cmp-product-image">
 
-<img
-src="{{asset('images/products/'.$product['code'].'.jpg')}}"
-class="app-cmp-product-image">
+                </td>
 
-</td>
+                <td>
 
-<td>
+                    <a class="procode" href="{{ route('products.view', ['product' => $product['code']]) }}">
 
-<a href="{{route('products.view',['product'=>$product['code']])}}">
+                        {{ $product['code'] }}
 
-{{$product['code']}}
+                    </a>
 
-</a>
+                </td>
 
-</td>
+                <td >{{ $product['name'] }}</td>
 
-<td>{{$product['name']}}</td>
+            </tr>
+        @endforeach
 
-</tr>
-
-@endforeach
-
-</table>
+    </table>
 
 @endsection

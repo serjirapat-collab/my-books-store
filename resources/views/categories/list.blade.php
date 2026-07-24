@@ -1,6 +1,7 @@
-@extends('layouts.main')
-
-@section('title','Categories')
+@extends('layouts.main', [
+'title' => 'Categories',
+'titleClasses' => ['app-cl-product-code2'],
+])
 
 @section('content')
 
@@ -24,7 +25,7 @@
 
 <td>
 
-<a href="{{route('categories.view',['category'=>$category['code']])}}">
+<a class="catcode" href="{{route('categories.view',['category'=>$category['code']])}}">
 
 {{$category['code']}}
 
@@ -32,7 +33,7 @@
 
 </td>
 
-<td>{{$category['name']}}</td>
+<td class="catcode2">{{$category['name']}}</td>
 
 </tr>
 
